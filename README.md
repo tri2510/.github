@@ -64,7 +64,7 @@ The ultimate goal of Eclipse AutoWRX is to support digital value creation for OE
 ---
 
 ## License
-
-The content of this open source project is licensed under the MIT License.
-
-Some source code and binaries may be distributed under different terms. Specific license information is provided in file headers and in `NOTICE` files distributed with the project's binaries.
+ 
+This organization supports open collaboration and transparency. Licensing terms are defined individually per repository to best reflect the nature and intended use of each component.
+ 
+Please refer to the `LICENSE` or `NOTICE` file in each repository for specific licensing information.
