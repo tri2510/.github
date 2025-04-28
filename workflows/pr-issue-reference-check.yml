@@ -1,7 +1,7 @@
 name: PR Issue Reference Check
 
 on:
-  pull_request_target:
+  pull_request: 
     types: [opened, edited, synchronize, reopened]
 
 permissions:
@@ -28,4 +28,6 @@ jobs:
                 body: '❌ Please reference an issue number (e.g., #123) in your PR description.'
               });
               core.setFailed('PR description must reference an issue number');
+            } else {
+              console.log('Issue reference found in PR description');
             }
