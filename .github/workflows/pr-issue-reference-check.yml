@@ -1,0 +1,36 @@
+name: PR Issue Reference Check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  check-issue-reference:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Issue Reference
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            // Updated pattern to match both #123 and org/repo#123 formats
+            const issuePattern = /(#\d+|[A-Za-z0-9-]+\/[A-Za-z0-9-]+#\d+)/;
+            
+            const bodyHasIssue = issuePattern.test(pr.body || '');
+            console.log('PR Body:', pr.body);
+            console.log('Has issue reference:', bodyHasIssue);
+            
+            if (!bodyHasIssue) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                body: '❌ Please reference an issue number (e.g., #123 or org/repo#123) in your PR description.'
+              });
+              core.setFailed('PR description must reference an issue number');
+            } else {
+              console.log('Issue reference found in PR description');
+            }
