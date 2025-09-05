@@ -1,0 +1,13 @@
+{
+  "name": "Retag Release as Latest",
+  "description": "Workflow template to retag an existing release image as 'latest' in container registry",
+  "iconName": "package",
+  "categories": [
+    "Deployment",
+    "Docker"
+  ],
+  "filePatterns": [
+    "*.yml",
+    "*.yaml"
+  ]
+}
